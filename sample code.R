@@ -29,7 +29,8 @@ weight = function(d, type) {
                  xout = d$Y)$y
   }
   suv[suv < 0.0001] = 1
-  I(d$cause == 1) / suv
+  
+  return(I(d$cause == 1) / suv)
 }
 
 lmcrr.cor = function(d, type = c("km", "cox", "rsf"), alpha = 1) {
@@ -63,13 +64,14 @@ lmcrr.cor = function(d, type = c("km", "cox", "rsf"), alpha = 1) {
   B = t(Bmat) %*% Bmat
   vv = ginv(A) %*% B %*% ginv(A)
   se = sqrt(diag(vv))
-  data.frame(beta = beta[-1], se = se[-1])
+  
+  return(list(beta = beta[-1], se = se[-1]))
 }
 
 
 resfun = function(fit) {
   est = fit$beta
-  round(cbind(est, fit$se), 2)
+  return(round(cbind(est, fit$se), 2))
 }
 
 ## Data analysis

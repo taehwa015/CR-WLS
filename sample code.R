@@ -58,7 +58,7 @@ lmcrr.cor = function(d, type = c("km", "cox", "rsf"), alpha = 1) {
   for (i in 1:nn) {
     for (j in 1:nn) {
       if (cause[j] == 0)
-        Bmat[i,] = Bmat[i,] - (Y[i]>=Y[j]) * Q[j,]/sum(Y>=Y[j])
+        Bmat[i,] = Bmat[i,] + (Y[i]>=Y[j]) * Q[j,]/sum(Y>=Y[j])
     }
   }
   B = t(Bmat) %*% Bmat

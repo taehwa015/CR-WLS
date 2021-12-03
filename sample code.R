@@ -28,7 +28,7 @@ weight = function(d, type) {
                  y = msurv,
                  xout = d$Y)$y
   }
-  suv[suv < 0.0001] = 1
+  suv[suv < 0.0001] = 0.0001
   
   return(I(d$cause == 1) / suv)
 }
